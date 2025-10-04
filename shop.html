@@ -6,15 +6,31 @@
   <title>Nilkamal Furniture - Shop</title>
   <link rel="stylesheet" href="shop.css" />
   <script src="shop.js" defer></script>
+
+  <style>
+    /* Remove underline + style links like normal text */
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      margin-left: 20px;
+      cursor: pointer;
+    }
+    nav a:hover {
+      color: #f39c12; /* highlight on hover */
+    }
+    nav a.active {
+      color: #f39c12; /* show active page */
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
 
   <!-- ===== Header ===== -->
   <header>
     <div class="container">
-    
-	<h1>Nilkamal Furniture</h1>
-
+      <h1>Nilkamal Furniture</h1>
       <nav>
         <a href="index.html">Home</a>
         <a href="shop.html" class="active">Shop</a>
