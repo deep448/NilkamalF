@@ -1,3 +1,17 @@
+ nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      margin-left: 20px;
+      cursor: pointer;
+    }
+    nav a:hover {
+      color: #f39c12; /* highlight on hover */
+    }
+    nav a.active {
+      color: #f39c12; /* show active page */
+      font-weight: bold;
+    }
 .container {
   max-width: 1200px;
   margin: auto;
@@ -141,4 +155,5 @@ footer {
   padding: 1rem;
   background: #2d4b42;
   color: white;
+
 }
