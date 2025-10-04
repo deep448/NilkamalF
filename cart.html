@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart - Nilkamal Furniture</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f7f7f7; }
+    header { background:#2c3e50; color:white; padding:15px; text-align:center; }
+    .container { width:90%; max-width:1000px; margin:20px auto; }
+    table { width:100%; border-collapse:collapse; background:#fff; border-radius:8px; overflow:hidden; }
+    th, td { padding:12px; border-bottom:1px solid #ddd; text-align:center; }
+    th { background:#34495e; color:white; }
+    .total { font-weight:bold; font-size:18px; margin-top:10px; text-align:right; }
+    button { padding:8px 12px; border:none; border-radius:5px; cursor:pointer; }
+    .remove-btn { background:#e74c3c; color:white; }
+    .place-order-btn { background:#27ae60; color:white; margin-top:15px; width:100%; padding:12px; font-size:16px; border-radius:6px; cursor:pointer; }
+    .place-order-btn:hover { background:#219150; }
+    .remove-btn:hover { background:#c0392b; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Your Cart</h1>
+  </header>
+
+  <div class="container">
+    <table id="cartTable">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price (₹)</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <p class="total">Subtotal: ₹<span id="subtotal">0</span></p>
+    <p class="total">Tax (5%): ₹<span id="tax">0</span></p>
+    <p class="total"><strong>Total: ₹<span id="total">0</span></strong></p>
+
+    <button class="place-order-btn" onclick="placeOrder()">Place Order</button>
+  </div>
+
+  <script>
+    // Load cart items
+    function loadCart() {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      let tbody = document.querySelector("#cartTable tbody");
+      let subtotal = 0;
+
+      tbody.innerHTML = "";
+
+      cart.forEach((item, index) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${item.name}</td>
+          <td>${item.price}</td>
+          <td><button class="remove-btn" onclick="removeItem(${index})">Remove</button></td>
+        `;
+        tbody.appendChild(row);
+        subtotal += item.price;
+      });
+
+      const tax = subtotal * 0.05;
+      const total = subtotal + tax;
+
+      document.getElementById("subtotal").textContent = subtotal.toFixed(2);
+      document.getElementById("tax").textContent = tax.toFixed(2);
+      document.getElementById("total").textContent = total.toFixed(2);
+    }
+
+    // Remove item from cart
+    function removeItem(index) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      loadCart();
+    }
+
+    // Place order and go to checkout page
+    function placeOrder() {
+      // Optional: You can save subtotal, tax, and total in localStorage for checkout page
+      let subtotal = parseFloat(document.getElementById("subtotal").textContent);
+      let tax = parseFloat(document.getElementById("tax").textContent);
+      let total = parseFloat(document.getElementById("total").textContent);
+
+      localStorage.setItem("orderSummary", JSON.stringify({ subtotal, tax, total }));
+
+      // Redirect to checkout page
+      window.location.href = "checkout.html";
+    }
+
+    // Initialize
+    loadCart();
+  </script>
+</body>
+</html>

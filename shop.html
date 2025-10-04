@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nilkamal Furniture - Shop</title>
+  <link rel="stylesheet" href="shop.css" />
+  <script src="shop.js" defer></script>
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header>
+    <div class="container">
+    
+	<h1>Nilkamal Furniture</h1>
+
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="shop.html" class="active">Shop</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html">Cart 🛒</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== Filter Section ===== -->
+  <section class="filters container">
+    <h2>Filter Products</h2>
+    <label>
+      Category:
+      <select id="categoryFilter">
+        <option value="all">All</option>
+        <option value="chair">Chair</option>
+        <option value="table">Table</option>
+        <option value="sofa">Sofa</option>
+      </select>
+    </label>
+
+    <label>
+      Max Price:
+      <input type="range" id="priceFilter" min="0" max="500" value="500" />
+      <span id="priceValue">₹500</span>
+    </label>
+  </section>
+
+  <!-- ===== Product Listing ===== -->
+  <section class="product-list container">
+    <div class="product" data-category="chair" data-price="120">
+      <img src="chair4.jpg" alt="Chair" />
+      <h3>Comfort Chair</h3>
+      <p>₹120</p>
+      <button onclick="addToCart('Comfort Chair', 120)">Add to Cart</button>
+    </div>
+
+    <div class="product" data-category="table" data-price="240">
+      <img src="table.jpg" alt="Table" />
+      <h3>Wooden Table</h3>
+      <p>₹240</p>
+      <button onclick="addToCart('Wooden Table', 240)">Add to Cart</button>
+    </div>
+
+    <div class="product" data-category="sofa" data-price="320">
+      <img src="mordern.jpg" alt="Sofa" />
+      <h3>Modern Sofa</h3>
+      <p>₹320</p>
+      <button onclick="addToCart('Modern Sofa', 320)">Add to Cart</button>
+    </div>
+
+    <div class="product" data-category="chair" data-price="80">
+      <img src="pchair.jpg" alt="Chair" />
+      <h3>Plastic Chair</h3>
+      <p>₹80</p>
+      <button onclick="addToCart('Plastic Chair', 80)">Add to Cart</button>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <p>&copy; 2025 Furni. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
